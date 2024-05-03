@@ -26,6 +26,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +57,11 @@ fun InsertDataComponent(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 30.dp, vertical = 8.dp),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done,
+                    capitalization = KeyboardCapitalization.Sentences
+                ),
                 value = TextFieldTitle.value,
                 onValueChange = { TextFieldTitle.value = it },
             )
@@ -66,7 +72,11 @@ fun InsertDataComponent(navController: NavHostController) {
                     .height(200.dp)
                     .padding(horizontal = 30.dp, vertical = 8.dp)
                     .border(width = 1.dp, color = Color.Transparent, shape = RoundedCornerShape(8.dp)),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done,
+                    capitalization = KeyboardCapitalization.Sentences
+                ),
                 value = TextFieldDescription.value,
                 onValueChange = { TextFieldDescription.value = it },
             )
@@ -92,3 +102,4 @@ fun InsertDataComponent(navController: NavHostController) {
         }
     }
 }
+

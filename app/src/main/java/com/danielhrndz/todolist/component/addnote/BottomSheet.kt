@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.danielhrndz.todolist.component.InsertDataComponent
+import com.danielhrndz.todolist.ui.theme.lightGray
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +57,7 @@ fun BottomSheet(
                     modifier = Modifier.size(48.dp),
                     onClick = onDismiss,
                     colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = MaterialTheme.colorScheme.background
+                        containerColor = lightGray
                     )
                 ) {
                     Icon(

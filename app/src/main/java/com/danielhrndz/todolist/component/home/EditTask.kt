@@ -1,5 +1,6 @@
 package com.danielhrndz.todolist.component.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,12 +29,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.danielhrndz.todolist.model.ObjectClass
 import com.danielhrndz.todolist.ui.theme.dark
 import com.danielhrndz.todolist.ui.theme.lightGray
+import java.text.SimpleDateFormat
+import java.util.Date
 
+@SuppressLint("SimpleDateFormat")
 @Composable
 fun EditTask(
     index: Int,
@@ -46,9 +52,9 @@ fun EditTask(
 
     Box(
         modifier = Modifier
-            .padding(vertical = 20.dp, horizontal = 10.dp)
+            .padding(vertical = 10.dp, horizontal = 10.dp)
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(10.dp))
+            .clip(shape = RoundedCornerShape(5.dp))
             .background(lightGray)
     ) {
         Column(
@@ -90,7 +96,11 @@ fun EditTask(
                                 fontWeight = FontWeight.SemiBold,
                                 color = Color.White
                             ),
-                            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Done,
+                                capitalization = KeyboardCapitalization.Sentences
+                            ),
                             keyboardActions = KeyboardActions(
                                 onDone = {
                                     item.PropertyOne = editedText1
@@ -117,7 +127,11 @@ fun EditTask(
                                 fontWeight = FontWeight.SemiBold,
                                 color = Color.White
                             ),
-                            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Done,
+                                capitalization = KeyboardCapitalization.Sentences
+                            ),
                             keyboardActions = KeyboardActions(
                                 onDone = {
                                     item.PropertyOne = editedText1
@@ -148,6 +162,22 @@ fun EditTask(
                     }
                 }
             } else {
+                val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                val currentDateAndTime = sdf.format(Date())
+                Text(
+                    text = "Created $currentDateAndTime",
+                    Modifier
+                        .padding(
+                            start = 20.dp,
+                            end = 20.dp,
+                            top = 15.dp,
+                            bottom = 5.dp
+                        )
+                        .fillMaxWidth(),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White
+                )
                 Text(
                     text = item.PropertyOne,
                     modifier = Modifier
@@ -162,7 +192,6 @@ fun EditTask(
                         .padding(
                             start = 20.dp,
                             end = 20.dp,
-                            top = 15.dp,
                             bottom = 5.dp
                         )
                         .fillMaxWidth(),
